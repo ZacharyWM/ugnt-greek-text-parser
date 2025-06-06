@@ -192,27 +192,6 @@ func ParseMarkdownToWordEntry(md string) (WordEntry, error) {
 	}
 	entry.Senses = senses
 
-	// senseRe := regexp.MustCompile(`(?ms)### Sense\s*([0-9.]+):?\s*.*?#### Definition:\s*(.*?)\n#### Glosses:.*?#### Citations:.*?(\[.*?\])`)
-	// matches := senseRe.FindAllStringSubmatch(md, -1)
-	// if len(matches) == 0 {
-	// 	// fallback: try to extract all senses even if citations are missing
-	// 	senseRe = regexp.MustCompile(`(?ms)### Sense\s*([0-9.]+):?\s*.*?#### Definition:\s*(.*?)\n`)
-	// 	matches = senseRe.FindAllStringSubmatch(md, -1)
-	// }
-
-	// for _, m := range matches {
-	// 	s := struct {
-	// 		Number     string `json:"number"`
-	// 		Definition string `json:"definition"`
-	// 	}{
-	// 		Number:     strings.TrimSpace(m[1]),
-	// 		Definition: strings.TrimSpace(m[2]),
-	// 	}
-	// 	senses = append(senses, s)
-	// }
-
-	// entry.Senses = senses
-
 	return entry, nil
 }
 
