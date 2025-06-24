@@ -18,15 +18,12 @@ func TestThing(t *testing.T) {
 				Strong: "G01590",
 				Senses: []Sense{
 					{
-						Number:     "1.0",
 						Definition: "pertaining to the cause of something",
 					},
 					{
-						Number:     "2.0",
 						Definition: "the source",
 					},
 					{
-						Number:     "3.0",
 						Definition: "guilty, having a valid basis for a charge",
 					},
 				},
@@ -38,15 +35,12 @@ func TestThing(t *testing.T) {
 				Strong: "G00680",
 				Senses: []Sense{
 					{
-						Number:     "1.0",
 						Definition: "the countryside as distinct from settled towns and villages",
 					},
 					{
-						Number:     "2.0",
 						Definition: "fields in which plants grow",
 					},
 					{
-						Number:     "3.0",
 						Definition: "a plot of ground",
 					},
 				},
@@ -58,11 +52,9 @@ func TestThing(t *testing.T) {
 				Strong: "G00740",
 				Senses: []Sense{
 					{
-						Number:     "1.0",
 						Definition: "a contest, wrestling;",
 					},
 					{
-						Number:     "2.0",
 						Definition: "great fear, agony, anguish;",
 					},
 				},
@@ -74,7 +66,6 @@ func TestThing(t *testing.T) {
 				Strong: "G01220",
 				Senses: []Sense{
 					{
-						Number:     "1.0",
 						Definition: "relating to a goat",
 					},
 				},
@@ -86,7 +77,6 @@ func TestThing(t *testing.T) {
 				Strong: "G08495",
 				Senses: []Sense{
 					{
-						Number:     "1.0",
 						Definition: "to boast;",
 					},
 				},
@@ -98,7 +88,6 @@ func TestThing(t *testing.T) {
 				Strong: "G27790",
 				Senses: []Sense{
 					{
-						Number:     "1.0",
 						Definition: "A section of land used for growing different types of plants and trees and often to grow plants and trees that produce fruits and vegetables",
 					},
 				},
@@ -110,7 +99,6 @@ func TestThing(t *testing.T) {
 				Strong: "G49190",
 				Senses: []Sense{
 					{
-						Number:     "1.0",
 						Definition: "to break, crush",
 					},
 				},
@@ -122,7 +110,6 @@ func TestThing(t *testing.T) {
 				Strong: "G49286",
 				Senses: []Sense{
 					{
-						Number:     "1.0",
 						Definition: "", // No definition provided in the original file
 					},
 				},
@@ -134,7 +121,6 @@ func TestThing(t *testing.T) {
 				Strong: "G49340",
 				Senses: []Sense{
 					{
-						Number:     "1.0",
 						Definition: "to agree on a course of action",
 					},
 				},
@@ -146,11 +132,9 @@ func TestThing(t *testing.T) {
 				Strong: "G00070",
 				Senses: []Sense{
 					{
-						Number:     "1.0",
 						Definition: "Abijah, a son of Rehoboam who is in the ancestral line of Jesus",
 					},
 					{
-						Number:     "2.0",
 						Definition: "Abijah, the founded of a division of priests of which Zacharaias was a part.  This division of priestly service of which Abijah was a part is described in 1 Chronicles 24 [1Chr 24:3, 10](1ch 24:3, 10)",
 					},
 				},

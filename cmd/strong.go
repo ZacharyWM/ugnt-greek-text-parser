@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
 	"io/fs"
@@ -9,9 +8,6 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
-
-	"github.com/hashicorp/go-retryablehttp"
-	"github.com/sashabaranov/go-openai"
 )
 
 const instructions = `You are a helpful assistant that converts Strong's Greek definitions into JSON format.
@@ -41,30 +37,16 @@ func StrongsToJSON() {
 		return
 	}
 
-	workEntries := make([]WordEntry, 0, len(fileContents))
+	wordEntries := make([]WordEntry, 0, len(fileContents))
 
 	for _, content := range fileContents {
-		// response := queryLLM(instructions + " " + content)
-		// if response == "" {
-		// 	fmt.Println("No response from Ollama for content:", content)
-		// 	continue
-		// }
-
-		response, err := ParseMarkdownToWordEntry(content)
+		entry, err := ParseMarkdownToWordEntry(content)
 		if err != nil {
 			fmt.Printf("Error parsing markdown content: %v\n", err)
 			continue
 		}
 
-		// var wordEntry WordEntry
-		// err = json.Unmarshal([]byte(response), &wordEntry)
-		// if err != nil {
-		// 	fmt.Printf("Error unmarshalling JSON response: %v\n", err)
-		// 	continue
-		// }
-
-		workEntries = append(workEntries, response)
-
+		wordEntries = append(wordEntries, entry)
 	}
 
 	outputFile := filepath.Join(outputDir, "strong_output.json")
@@ -77,40 +59,14 @@ func StrongsToJSON() {
 
 	encoder := json.NewEncoder(file)
 	encoder.SetIndent("", "  ") // Set indentation for pretty printing
-	err = encoder.Encode(workEntries)
+	err = encoder.Encode(wordEntries)
 	if err != nil {
 		fmt.Printf("Error encoding JSON to file: %v\n", err)
 		return
 	}
 
-	fmt.Printf("Successfully written %d entries to %s\n", len(workEntries), outputFile)
+	fmt.Printf("Successfully written %d entries to %s\n", len(wordEntries), outputFile)
 
-}
-
-func queryLLM(message string) string {
-	retryClient := retryablehttp.NewClient()
-	httpClient := retryClient.StandardClient()
-
-	client := openai.NewClientWithConfig(openai.ClientConfig{
-		BaseURL:    "http://localhost:11434/v1",
-		HTTPClient: httpClient,
-	})
-
-	resp, err := client.CreateChatCompletion(context.Background(), openai.ChatCompletionRequest{
-		Model: "llama3.2",
-		Messages: []openai.ChatCompletionMessage{
-			{
-				Role:    openai.ChatMessageRoleUser,
-				Content: message,
-			},
-		},
-	})
-	if err != nil {
-		fmt.Println("Error:", err)
-		return ""
-	}
-
-	return resp.Choices[0].Message.Content
 }
 
 func readAllMarkdownFiles(sourceDir string) ([]string, error) {
@@ -184,8 +140,9 @@ func ParseMarkdownToWordEntry(md string) (WordEntry, error) {
 	// Extract Senses
 	senses := []Sense{}
 
-	for _, d := range definitions {
+	for i, d := range definitions {
 		sense := Sense{
+			Number:     i + 1,
 			Definition: d,
 		}
 		senses = append(senses, sense)
@@ -211,10 +168,10 @@ func FindAllOccurrences(text, word string) []int {
 
 type WordEntry struct {
 	Strong string  `json:"strong"`
-	Senses []Sense `json:"senses"`
+	Senses []Sense `json:"definitions"`
 }
 
 type Sense struct {
-	Number     string `json:"number"`
+	Number     int    `json:"number"`
 	Definition string `json:"definition"`
 }
