@@ -100,7 +100,7 @@ func ParseMarkdownToWordEntry(md string) (WordEntry, error) {
 		entry.Strong = match[1]
 	}
 
-	definitions := []string{}
+	glosses := []string{}
 
 	glossIdxs := FindAllOccurrences(md, "Glosses:")
 	expIdxs := FindAllOccurrences(md, "Explanation:")
@@ -114,13 +114,17 @@ func ParseMarkdownToWordEntry(md string) (WordEntry, error) {
 		if endIdx == -1 {
 			endIdx = len(str)
 		}
-		definition := strings.TrimSpace(str[:endIdx])
+		gloss := strings.TrimSpace(str[:endIdx])
 
-		definitions = append(definitions, definition)
+		glosses = append(glosses, gloss)
 	}
 
 	for i, glossIdx := range expIdxs {
-		if definitions[i] != "" {
+		if i >= len(glosses) {
+			// literally only 1 word in the dataset missing the gloss
+			continue
+		}
+		if glosses[i] != "" {
 			continue
 		}
 		str := md[glossIdx+len("Explanation:"):]
@@ -133,14 +137,14 @@ func ParseMarkdownToWordEntry(md string) (WordEntry, error) {
 		}
 		gloss := strings.TrimSpace(str[:endIdx])
 		if gloss != "" {
-			definitions[i] = gloss
+			glosses[i] = gloss
 		}
 	}
 
 	// Extract Senses
 	senses := []Sense{}
 
-	for i, d := range definitions {
+	for i, d := range glosses {
 		sense := Sense{
 			Number:     i + 1,
 			Definition: d,
