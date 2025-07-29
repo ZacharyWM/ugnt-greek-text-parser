@@ -18,13 +18,13 @@ func TestThing(t *testing.T) {
 				Strong: "G01590",
 				Senses: []Sense{
 					{
-						Definition: "pertaining to the cause of something",
+						Definition: "causative of",
 					},
 					{
 						Definition: "the source",
 					},
 					{
-						Definition: "guilty, having a valid basis for a charge",
+						Definition: "blameworthy",
 					},
 				},
 			},
@@ -35,13 +35,13 @@ func TestThing(t *testing.T) {
 				Strong: "G00680",
 				Senses: []Sense{
 					{
-						Definition: "the countryside as distinct from settled towns and villages",
+						Definition: "the countryside",
 					},
 					{
-						Definition: "fields in which plants grow",
+						Definition: "fields",
 					},
 					{
-						Definition: "a plot of ground",
+						Definition: "a piece of ground",
 					},
 				},
 			},
@@ -66,7 +66,7 @@ func TestThing(t *testing.T) {
 				Strong: "G01220",
 				Senses: []Sense{
 					{
-						Definition: "relating to a goat",
+						Definition: "of a goat",
 					},
 				},
 			},
@@ -88,7 +88,7 @@ func TestThing(t *testing.T) {
 				Strong: "G27790",
 				Senses: []Sense{
 					{
-						Definition: "A section of land used for growing different types of plants and trees and often to grow plants and trees that produce fruits and vegetables",
+						Definition: "garden",
 					},
 				},
 			},
@@ -99,7 +99,7 @@ func TestThing(t *testing.T) {
 				Strong: "G49190",
 				Senses: []Sense{
 					{
-						Definition: "to break, crush",
+						Definition: "to break in pieces, crush",
 					},
 				},
 			},
@@ -121,7 +121,7 @@ func TestThing(t *testing.T) {
 				Strong: "G49340",
 				Senses: []Sense{
 					{
-						Definition: "to agree on a course of action",
+						Definition: "to determine, agree, covenant",
 					},
 				},
 			},
@@ -132,10 +132,21 @@ func TestThing(t *testing.T) {
 				Strong: "G00070",
 				Senses: []Sense{
 					{
-						Definition: "Abijah, a son of Rehoboam who is in the ancestral line of Jesus",
+						Definition: "Abia, Abijah",
 					},
 					{
-						Definition: "Abijah, the founded of a division of priests of which Zacharaias was a part.  This division of priestly service of which Abijah was a part is described in 1 Chronicles 24 [1Chr 24:3, 10](1ch 24:3, 10)",
+						Definition: "Abijah",
+					},
+				},
+			},
+		},
+		{
+			FilePath: "../strong/G00110/01.md",
+			Expected: WordEntry{
+				Strong: "G00110",
+				Senses: []Sense{
+					{
+						Definition: "Abraham",
 					},
 				},
 			},

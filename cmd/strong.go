@@ -102,11 +102,11 @@ func ParseMarkdownToWordEntry(md string) (WordEntry, error) {
 
 	definitions := []string{}
 
-	defIdxs := FindAllOccurrences(md, "Definition:")
 	glossIdxs := FindAllOccurrences(md, "Glosses:")
+	expIdxs := FindAllOccurrences(md, "Explanation:")
 
-	for _, defIdx := range defIdxs {
-		str := md[defIdx+len("Definition:"):]
+	for _, defIdx := range glossIdxs {
+		str := md[defIdx+len("Glosses:"):]
 		endIdx := strings.Index(str, "#")
 		if endIdx == -1 {
 			endIdx = strings.Index(str, "-")
@@ -119,11 +119,11 @@ func ParseMarkdownToWordEntry(md string) (WordEntry, error) {
 		definitions = append(definitions, definition)
 	}
 
-	for i, glossIdx := range glossIdxs {
+	for i, glossIdx := range expIdxs {
 		if definitions[i] != "" {
 			continue
 		}
-		str := md[glossIdx+len("Glosses:"):]
+		str := md[glossIdx+len("Explanation:"):]
 		endIdx := strings.Index(str, "#")
 		if endIdx == -1 {
 			endIdx = strings.Index(str, "-")
