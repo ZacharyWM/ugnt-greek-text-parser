@@ -145,6 +145,9 @@ func ParseMarkdownToWordEntry(md string) (WordEntry, error) {
 	senses := []Sense{}
 
 	for i, d := range glosses {
+		if d == "" {
+			continue // Skip empty definitions
+		}
 		sense := Sense{
 			Number:     i + 1,
 			Definition: d,
